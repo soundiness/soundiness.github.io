@@ -82,6 +82,6 @@ footer = """
 
 page = header + pubs + footer
 
-with open("publications.html", "w") as output:
+with open("biblio.html", "w") as output:
     output.write(page)
 
