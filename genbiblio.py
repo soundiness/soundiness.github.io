@@ -60,7 +60,7 @@ header = """<!DOCTYPE html>
       <section id="main_content" class="inner">
       <h1>Soundiness bibliography</h1>
 
-      <p><strong>NOTE:</strong> this bibliography is preliminary and incomplete.</p>
+      <p>This is an initial bibliography of papers related to the theme of soundiness.  We aim to list papers that either (1) measure the unsoundness of whole-program analyses in some way, (2) give solutions to analyzing "hard" language features, or (3) measure the utility of soundness in a particular context.  If you have further suggestions for references, submit an <a href="https://github.com/soundiness/soundiness.github.io/issues">issue</a> or a <a href="https://github.com/soundiness/soundiness.github.io/pulls">pull request</a>.</p><hr/>
 """
 
 footer = """
