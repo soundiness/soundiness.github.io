@@ -8,10 +8,10 @@ def call_fail(l):
         print "{} failed".format(" ".join(l))
         exit(1)
 
-bibtex2html_command = ["bibtex2html", "-d", "-r",
+bibtex2html_command = ["bibtex2html", "-d",
                        "-nokeys", "--no-abstract",
                        "-nodoc", "-noheader",
-                       "-nofooter", "-nokeywords", "pubs.bib"]
+                       "-nofooter", "-nokeywords", "soundinessrefs.bib"]
 
 def get_pub_html():
     # run bibtex2html
@@ -19,10 +19,10 @@ def get_pub_html():
     os.putenv("TMPDIR",".")
     call_fail(bibtex2html_command)
     # read in generated HTML
-    with open("pubs.html", "r") as p:
+    with open("soundinessrefs.html", "r") as p:
         data = p.read()
     # delete generated file
-    os.remove("pubs.html")
+    os.remove("soundinessrefs.html")
     return data
 
 pubs = get_pub_html()
