@@ -5,58 +5,114 @@
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Soundiness home page : " />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link href="stylesheets/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/bootswatch.min.css">
 
     <title>Soundiness home page</title>
     <style>
       table,td,tr { border-style:none;}
+      p {  text-align: justify; }
     </style>
   </head>
 
-  <body>
+  <body class style>
+    <div class="navbar navbar-default">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Soundiness</a>
+      </div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/soundiness">View on GitHub</a>
-
-          <h1 id="project_title">Soundiness home page</h1>
-          <h2 id="project_tagline"></h2>
-
-        </header>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#Introduction">Introduction</a></li>
+          <li><a href="#Bibliography">Bibliography</a></li>
+        </ul>
+      </div>
     </div>
 
+    <!-- HEADER -->
+    <div class="container">
+        <div class="page-header">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 id="buttons">Soundiness home page</h1>
+            </div>
+          </div>
+        </div>
+
     <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <!--
-        <h3>
+    <div class="row">
+      <a name="Introduction"></a>
+      <div class="col-lg-7">
+        <div class="jumbotron">
+        <h3>If you wanted to learn about soundiness, you are in the right place. Below is a brief excerpt from our Soundiness manifesto...</h3>
+        </div>
+        <p>
+        Static program analysis is a key component of many software development tools, including compilers, development environments, and verification tools. 
 
-        <a name="soundiness-home-page" class="anchor" href="#soundiness-home-page">
-        <span class="octicon octicon-link"></span></a>Soundiness home page</h3>
-        -->
-
-        <p>This is a stub home page for the soundiness movement in program analysis.  More soon.</p>
-
-
-        <p>For now, please enjoy a brief 
+        Practical applications of static analysis have grown in recent years to include tools by companies such as Coverity, Fortify, GrammaTech, IBM, and others. Analyses are often expected to be sound in that their result models all possible executions of the program under analysis. Soundness implies that the analysis computes an over-approximation in order to stay tractable; the analysis result will also model behaviors that do not actually occur in any program execution. The precision of an analysis is the degree to which it avoids such spurious results. Users expect analyses to be sound as a matter of course, and desire analyses to be as precise as possible, while being able to scale to large programs.
+        </p>
+        <p>
+        Soundness would seem essential for any kind of static program analysis. Soundness is also widely emphasized in the academic literature. Yet, in practice, soundness is commonly eschewed: we are not aware of a single realistic whole-program  analysis tool (e.g., tools widely used for bug detection, refactoring assistance, programming automation, etc.) that does not purposely make unsound choices. Similarly, virtually all published whole-program analyses are unsound and omit conservative handling of common language features when applied to real programming languages.
+        </p>
+        <p>
+        The typical reasons for such choices are engineering compromises: implementers of such tools are well aware of how they could handle complex language features soundly (e.g., by assuming that a complex language feature can exhibit any behavior), but do not do so because this would make the analysis unscalable or imprecise to the point of being useless. Therefore, the dominant practice is one of treating soundness as an engineering choice.
+        </p>
+        <p>
+        In all, we are faced with a paradox: on the one hand we have the ubiquity of unsoundness in any practical whole-program analysis tool that has a claim to precision and scalability; on the other, we have a research community that, outside a small group of experts, is oblivious to any unsoundness, let alone its preponderance in practice.
+        </p>
+        <p>We are in the process of expanding this page. For now, please enjoy a brief 
           <a href="documents/InDefense2.pdf">write-up</a> and a 
           <a href="documents/Soundiness.pptx">presentation</a> on this subject.
         </p>
-
-        <table>
-          <tr>
-            <td>
-              <img src="images/soundiness_slide.png">
-            </td>
-            <td>
-              <img src="images/truthiness.png">
-            </td>
-          </tr>
-        </table>
-      </section>
+      </div>
+      <div class="col-lg-2">
+        <img src="images/soundiness_slide.png" style="padding-bottom:10px;">
+        <img src="images/truthiness.png" style="padding-bottom:10px;">
+      </div>
     </div>
+    <div class="row">
+        
+    </div>
+
+    <div class="page-header">
+          <div class="row">
+            <div class="col-lg-12">
+              <h1 id="buttons">Bibliography</h1>
+            </div>
+          </div>
+    </div>
+
+    <div class="row">
+      <a name='Bibliography'></a>
+      <div class="col-lg-5">
+      <p>
+        Below is a short bibliography of papers related to soundiness produced from this bibtet <a href='soundiness'>file</a>. We aim to list papers that either (1) measure the unsoundness of whole-program analyses in some way, (2) give solutions to analyzing "hard" language features, or (3) measure the utility of soundness in a particular context. If you have further suggestions for references, submit an <a href='https://github.com/soundiness/soundiness.github.io/issues'>issue</a> or a <a href='https://github.com/soundiness/soundiness.github.io/pulls'>pull request</a>.
+      </p>
+      
+      <ul>
+      <li> Bodden, E., Sewe, A., Sinschek, J., Oueslati, H. and Mezini, M. 2011. Taming Reflection Aiding Static Analysis in the Presence of Reflection and Custom Class Loaders. ICSE (2011), 241–250.
+      <li> Bravenboer, M. and Smaragdakis, Y. 2009. Strictly declarative specification of sophisticated points-to analyses. ACM SIGPLAN Notices (Oct. 2009), 243.
+      <li> Christakis, M., Müller, P. and Wüstholz, V. 2014. An Experimental Evaluation of Deliberate Unsoundness in a Static Program Analyzer. VMCAI (2014).
+      <li> Feldthaus, A., Schäfer, M., Sridharan, M., Dolby, J. and Tip, F. 2013. Efficient Construction of Approximate Call Graphs for JavaScript IDE Services. ICSE (2013), 752–761.
+      <li> Flanagan, Cormac and Leino, K.R.M., Lillibridge, M., Nelson, G., Saxe, J.B. and Stata, R. 2002. Extended Static Checking for Java. PLDI (2002).
+      <li> Lhoták, O. 2007. Comparing call graphs. PASTE (2007).
+      <li> Li, Y., Tan, T., Sui, Y. and Xue, J. 2014. Self-Inferencing Reflection Resolution for Java. ECOOP (2014).
+      <li> Li, Y., Tan, T., Sui, Y. and Xue, J. 2014. Self-Inferencing Reflection Resolution for Java. ECOOP (2014).
+      <li> Livshits, B., Whaley, J. and Lam, M. 2005. Reflection analysis for Java. Programming Languages and Systems. 0326227 (2005).
+      <li> Richards, G. 2012. Eval Begone ! Semi-Automated Removal of Eval from JavaScript Programs. OOPSLA (2012).
+      <li> Richards, G., Hammer, C. and Burg, B. 2011. The Eval that men do: A large-scale study of the use of eval in JavaScript applications. ECOOP (2011).
+      <li> Smaragdakis, Y. and Csallner, C. 2007. Combining Static and Dynamic Reasoning for Bug Detection. Tests and Proofs (2007).
+      </ul>
+    </div>
+    </div>
+
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
@@ -65,7 +121,8 @@
       </footer>
     </div>
 
-    
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>    
 
   </body>
 </html>
