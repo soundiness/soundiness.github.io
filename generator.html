@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title></title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js" /> </script>
+	<script type="text/javascript" src="handlebars-v1.3.0.js" /> </script>
+
+<link rel="stylesheet" type="text/css" href="github.css">
+
+<script id="entry-template" type="text/x-handlebars-template">
+	<div>
+			{{#each data}}
+				<div id="{{getDivId language}}" style='border: 0px solid gray; padding: 5px; margin: 5px;'>
+					<input id="{{getId language}}" type='checkbox'><b>{{language}}</b></input>
+					
+					<fieldset id="{{getFieldSetId language}}">
+					<ul>
+		  			{{#each features}}
+		  				<p>
+		  					<input class='feature' disabled='disabled' type='checkbox' checked></input>
+		  					<label>{{this}}</label>
+		  				</p>
+		  			{{/each}}
+		  			</ul>
+		  			</fieldset>
+		  		</div>	  		
+		{{/each}}
+	</div>
+</script>
+
+<script type="text/javascript">
+	var soundnessLevels = {
+		data : [
+			{
+				"language": "C/C++",
+				"features" : [
+					"memory allocations represent unshared blocks",
+					"pointer creation (0x12345678 cast to int*)",
+					"lack of buffer overruns",
+					"setJmp and longJmp",
+					"negative stack references",
+					"integer overflow",
+					"exceptions and flow related to that",
+					]
+			},
+			{
+				"language" : "Java and C#",
+				"features" : [
+					"newInstance support",
+					"code generation at runtime",
+					"different code loaders?",
+					"JNI",
+					"integer overflow",
+					"exceptions and flow related to that",
+				]
+			},
+			{
+				"language" : "JavaScript",
+				"features" : [
+					"eval",
+					"innerHtml assignments",
+					"Function constructor",
+					"setTimeout and setInterval",
+					"computed properties",
+					"implicit conversions (==, valueOf, toString)",
+					"exceptions and flow related to that",
+					"getters and setters",
+					"prototype semantics",
+				]
+			},
+		]
+	};
+	var statementTemplate;
+	$(document).ready( function () {
+		var source   = $("#entry-template").html();
+		var template = Handlebars.compile(source);
+		statementTemplate = Handlebars.compile($("#text").text());
+		
+		Handlebars.registerHelper('getId', function(language) {
+		    return new Handlebars.SafeString("" + 
+		                language.
+							replace('/', '_').
+							replace(/\s/g, '-').
+							replace(/_/g, '-').
+							replace(/\+/g, '_').
+							replace('#', '_') +
+							"");
+		});
+		Handlebars.registerHelper('getDivId', function(language) {
+		    return new Handlebars.SafeString("" + 
+		                language.
+							replace('/', '_').
+							replace(/\s/g, '-').
+							replace(/_/g, '-').
+							replace(/\+/g, '_').
+							replace('#', '_')  ) + "Div";
+		});
+		Handlebars.registerHelper('getFieldSetId', function(language) {
+		    return new Handlebars.SafeString("" + 
+		                language.
+							replace('/', '_').
+							replace(/\s/g, '-').
+							replace(/_/g, '-').
+							replace(/\+/g, '_').
+							replace('#', '_')  ) + "FieldSetId";
+		});
+
+		$("#content-placeholder").html(template(soundnessLevels));
+
+		for(var index in soundnessLevels.data){
+			var language = getId(soundnessLevels.data[index].language);
+			//console.log("Setting click for #" + language);
+			$("#" + language).click(
+				function(e){
+					var target =  e.target.id;
+					var isChecked = $('#' + target).is(":checked");
+					//console.log("processing " + '#' + target + "FieldSetId");
+					if(isChecked){
+						$('#statement').show();
+						//console.log('Showing the statement');
+					}else{
+						$('#statement').hide();
+						//console.log('Not showing the statement');
+					}
+					
+					var fieldset = $(e.target).parent().find('fieldset');
+					//console.log("target: " + $(e.target) + " fieldset: " +fieldset);
+
+					updateFieldSet(fieldset);
+
+					// disable the checkboxes if needed
+					$('#' + target + "FieldSetId")
+						.find('.feature')
+						.each(
+							function(){
+								console.log('Processing ' + this);
+								$(this).prop('disabled', !isChecked);
+							}
+						);
+
+					//console.log("Clicked " + language + " , event: " + e.target.id + "checked: " + isChecked);
+
+					for(var index2 in soundnessLevels.data){
+						var language2 = getId(soundnessLevels.data[index2].language);
+							if(target != language2){	
+								var toHide = "#" + language2 + "Div";
+								//console.log("hiding " + toHide);
+								if(isChecked){
+									$(toHide).hide();
+								}else{
+									$(toHide).show();					
+								}
+							}
+					}
+				}
+			);
+		}
+		
+		$(".feature").click(function(e){
+			console.log("Clicked on a checkbox");
+			updateText($(this));
+		});
+	});
+
+	function updateText(target){
+		updateFieldSet(target.closest('fieldset'));	        	
+	}
+
+	function updateFieldSet(target){
+		var features = target.find('input:checked')
+	        	//.prop('checked', true)
+	        .map(
+					function(){
+						//console.log(
+						//	$(this).closest('fieldset')
+	        			//	.find('input:checked').length + " total checked");
+						return $(this).next().text();
+					}
+			).get().join("\n\t");
+
+	    //console.log("Setting data: " + features);
+	        //console.log("template: " + statementTemplate);
+			// update the statement
+		var data = {'features' : features};
+		$("#text").text(statementTemplate(data));
+	}
+
+	//function toggle(e){
+	//	console.log('clicked ' + e);
+	//}
+
+	function getId(language){
+		return language.
+			replace('/', '_').
+			replace(/\s/g, '-').
+			replace(/_/g, '-').
+			replace(/\+/g, '_').
+			replace('#', '_');
+	}
+
+</script>
+</head>
+<body> 
+  <h3>Please pick the features your analysis supports:</h3>
+  <div id="content-placeholder"></div>
+
+  <div id="statement" style="display:none;">
+	  <h3>Soundiness statement:</h3>
+	  	<center>
+	  		<textarea id="text" style="margin: 5px; width:75%;height:350px;">
+ This paper/project has been done in the spirit of soundiness. When building practical program analyses, it is often necessary to cut corners. In order to be open about language features that we do not support or support only partially, we are attaching this soundiness statement.
+
+ Our analysis handles the following features: 
+
+  	{{features}}
+
+We have determined that excluding these features from analysis has no/minimal/acceptable effect on analysis output and validity of our experimental evaluation. 
+	  	</textarea> 
+	  </center>
+  </div>
+</body>
+</html>
