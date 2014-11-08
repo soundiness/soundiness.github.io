@@ -190,7 +190,7 @@
 
     </script>
 
-    <title>Soundiness home page</title>
+    <title>Soundiness Home Page</title>
     <style>
       table,td,tr { border-style:none;}
       p {  text-align: justify; }
@@ -235,7 +235,7 @@
         <div class="page-header">
           <div class="row">
             <div class="col-lg-12">
-              <h1 id="buttons">Soundiness home page</h1>
+              <h1 id="buttons">Soundiness Home Page</h1>
             </div>
           </div>
         </div>
@@ -287,27 +287,35 @@
           </div>
     </div>
 
-    <div class="row">
+    <div class="row different-gray">
       <a name='Bibliography'></a>
       <div class="col-lg-2"></div>
-      <div class="col-lg-8 different-gray">
+      <div class="col-lg-8">
+      <br>
       <p>
         Below is a short bibliography of papers related to soundiness produced from this bibtex <a href='soundinessrefs.bib'>file</a>. We aim to list papers that either (1) measure the unsoundness of whole-program analyses in some way, (2) give solutions to analyzing "hard" language features, or (3) measure the utility of soundness in a particular context. If you have further suggestions for references, submit an <a href='https://github.com/soundiness/soundiness.github.io/issues'>issue</a> or a <a href='https://github.com/soundiness/soundiness.github.io/pulls'>pull request</a>.
       </p>
 
-      <ul>
-      <li> Bodden, E., Sewe, A., Sinschek, J., Oueslati, H. and Mezini, M. 2011. Taming Reflection Aiding Static Analysis in the Presence of Reflection and Custom Class Loaders. ICSE (2011), 241–250.
-      <li> Bravenboer, M. and Smaragdakis, Y. 2009. Strictly declarative specification of sophisticated points-to analyses. ACM SIGPLAN Notices (Oct. 2009), 243.
+      <style> 
+        .biblio li { 
+          padding: .2em 1em; 
+          //list-style-type: none;
+        }
+      </style>
+
+      <ul class="biblio">
       <li> Christakis, M., Müller, P. and Wüstholz, V. 2014. An Experimental Evaluation of Deliberate Unsoundness in a Static Program Analyzer. VMCAI (2014).
+      <li> Li, Y., Tan, T., Sui, Y. and Xue, J. 2014. Self-Inferencing Reflection Resolution for Java. ECOOP (2014).
       <li> Feldthaus, A., Schäfer, M., Sridharan, M., Dolby, J. and Tip, F. 2013. Efficient Construction of Approximate Call Graphs for JavaScript IDE Services. ICSE (2013), 752–761.
-      <li> Flanagan, Cormac and Leino, K.R.M., Lillibridge, M., Nelson, G., Saxe, J.B. and Stata, R. 2002. Extended Static Checking for Java. PLDI (2002).
-      <li> Lhoták, O. 2007. Comparing call graphs. PASTE (2007).
-      <li> Li, Y., Tan, T., Sui, Y. and Xue, J. 2014. Self-Inferencing Reflection Resolution for Java. ECOOP (2014).
-      <li> Li, Y., Tan, T., Sui, Y. and Xue, J. 2014. Self-Inferencing Reflection Resolution for Java. ECOOP (2014).
-      <li> Livshits, B., Whaley, J. and Lam, M. 2005. Reflection analysis for Java. Programming Languages and Systems. 0326227 (2005).
       <li> Richards, G. 2012. Eval Begone ! Semi-Automated Removal of Eval from JavaScript Programs. OOPSLA (2012).
+      <li> Bodden, E., Sewe, A., Sinschek, J., Oueslati, H. and Mezini, M. 2011. Taming Reflection Aiding Static Analysis in the Presence of Reflection and Custom Class Loaders. ICSE (2011), 241–250.
       <li> Richards, G., Hammer, C. and Burg, B. 2011. The Eval that men do: A large-scale study of the use of eval in JavaScript applications. ECOOP (2011).
+      <li> Bravenboer, M. and Smaragdakis, Y. 2009. Strictly declarative specification of sophisticated points-to analyses. ACM SIGPLAN Notices (Oct. 2009), 243.
       <li> Smaragdakis, Y. and Csallner, C. 2007. Combining Static and Dynamic Reasoning for Bug Detection. Tests and Proofs (2007).
+      <li> Lhoták, O. 2007. Comparing call graphs. PASTE (2007).
+      <li> Livshits, B., Whaley, J. and Lam, M. 2005. Reflection analysis for Java. Programming Languages and Systems. 0326227 (2005).
+      <li> Flanagan, Cormac and Leino, K.R.M., Lillibridge, M., Nelson, G., Saxe, J.B. and Stata, R. 2002. Extended Static Checking for Java. PLDI (2002).
+
       </ul>
     </div>
     </div>
